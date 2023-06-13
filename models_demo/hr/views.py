@@ -76,8 +76,8 @@ def show_test_form(request):
         model_form.save()
         return redirect('home')
     if username_form.is_valid():
-        data = username_form.cleaned_data
-        print(data)
+        username_form.save()
+        return redirect('home')
     return render(request, 'forms.html', context)
 
 

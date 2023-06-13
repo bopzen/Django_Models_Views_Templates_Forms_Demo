@@ -33,3 +33,6 @@ class UsernameForm(forms.ModelForm):
     class Meta:
         model = Username
         fields = '__all__'
+        widgets = {
+            'password': forms.PasswordInput
+        }
