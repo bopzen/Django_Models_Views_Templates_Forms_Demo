@@ -71,13 +71,13 @@ def show_test_form(request):
         'username_form': username_form
     }
     if test_form.is_valid():
-        return redirect('home')
+        return redirect('success')
     if model_form.is_valid():
         model_form.save()
-        return redirect('home')
+        return redirect('success')
     if username_form.is_valid():
         username_form.save()
-        return redirect('home')
+        return redirect('success')
     return render(request, 'forms.html', context)
 
 
@@ -91,3 +91,7 @@ def show_edit_employee_form(request, slug):
         edit_employee_form.save()
         return redirect('details-by-slug-employee', slug)
     return render(request, 'edit-employee.html', context)
+
+
+def show_success(request):
+    return render(request, 'success.html')

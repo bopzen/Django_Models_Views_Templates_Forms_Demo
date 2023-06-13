@@ -34,5 +34,5 @@ class UsernameForm(forms.ModelForm):
         model = Username
         fields = '__all__'
         widgets = {
-            'password': forms.PasswordInput
+            'password': forms.PasswordInput()
         }
