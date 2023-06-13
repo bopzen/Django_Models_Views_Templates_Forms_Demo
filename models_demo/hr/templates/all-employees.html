@@ -1,0 +1,19 @@
+<div>
+    <h4>All</h4>
+    <ul>
+        {% for employee in employees %}
+            <li>
+                {{ employee.first_name }} {{ employee.last_name }}
+                <br>
+                {{ employee.position }} {{ employee.department }}, {{ employee.job_level }}
+                <br>
+                {{ employee.birth_date }}
+                <a href="{% url 'delete-employee' pk=employee.pk %}">Delete</a>
+                <a href="{% url 'details-employee' pk=employee.pk %}">Details</a>
+                <a href="{% url 'details-by-slug-employee' slug=employee.slug%}">Details by slug</a>
+                <a href="{{ employee.get_absolute_url }}">Details from URL</a>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+</div>

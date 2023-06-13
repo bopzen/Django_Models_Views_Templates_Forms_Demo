@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Forms
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ username_form.as_p }}
+        <button type="submit">Submit Username</button>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ test_form.as_p }}
+        <button type="submit">Submit Test Form</button>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ model_form.as_p }}
+        <button type="submit">Submit Model Form</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<header>
+    <nav>
+        <ul>
+        {% url 'home' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Home</a></li>
+        {% url 'show-employees' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Employees</a></li>
+        {% url 'show-departments' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Departments</a></li>
+        {% url 'show-positions' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Positions</a></li>
+        {% url 'show-forms' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Forms</a></li>
+        <li><a href="http://127.0.0.1:8000/admin/" target="_blank">Admin</a></li>
+        </ul>
+    </nav>
+</header>

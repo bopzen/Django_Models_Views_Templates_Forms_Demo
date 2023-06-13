@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+<h1>Home Page</h1>
+    <div>
+        <h3>Employees</h3>
+        <div class="info-wrapper">
+            {% include 'all-employees.html' %}
+
+            <div>
+                <h4>Filtered</h4>
+                <ul>
+                    {% for employee in employees2 %}
+                        <li>
+                            {{ employee.first_name }} {{ employee.last_name }}
+                            <br>
+                            {{ employee.position }} {{ employee.department }}, {{ employee.job_level }}
+                            <br>
+                            {{ employee.birth_date }}
+                        </li>
+                        <br>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

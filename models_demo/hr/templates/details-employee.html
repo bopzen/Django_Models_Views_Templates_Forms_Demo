@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Employee Details
+{% endblock %}
+
+{% block content %}
+
+    <h1>Employee Details</h1>
+    <h3>{{ employee.full_name }}</h3>
+    <p>Positions: {{ employee.position }}</p>
+    <p>Department: {{ employee.department }}</p>
+    <p>Projects: {{ employee.all_projects }}</p>
+    <p>Birth Date: {{ employee.birth_date }}</p>
+    <p>Created On: {{ employee.created_on }}</p>
+    <p>Updated On: {{ employee.updated_on }}</p>
+    <a href="{% url 'delete-employee' pk=employee.pk %}">Delete</a>
+    <a href="{% url 'edit-employee' slug=employee.slug %}">Edit</a>
+
+
+{% endblock %}

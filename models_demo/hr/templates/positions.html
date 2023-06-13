@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Positions
+{% endblock %}
+
+{% block content %}
+    <h1>Positions</h1>
+    <ul>
+        {% for position in positions_list %}
+            <li>{{ position.position_name }} {{ position.employee_set.count }}:
+                {% for employee in position.employee_set.all %}
+                    <a href="{% url 'details-employee' pk=employee.pk %}">{{ employee.full_name }}</a>
+                    {% empty %}
+                        <span>None</span>
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
