@@ -1,6 +1,5 @@
 from django import forms
-
-from models_demo.hr.models import Employee, Username
+from models_demo.hr.models import Employee, Username, Image
 
 
 class TestForm(forms.Form):
@@ -36,3 +35,9 @@ class UsernameForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput()
         }
+
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = '__all__'

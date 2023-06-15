@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from models_demo.hr.forms import TestForm, EmployeesForm, UsernameForm
-from models_demo.hr.models import Employee, Department, Position
+from models_demo.hr.forms import TestForm, EmployeesForm, UsernameForm, ImageForm
+from models_demo.hr.models import Employee, Department, Position, Image
 
 
 def home(request):
@@ -91,6 +91,23 @@ def show_edit_employee_form(request, slug):
         edit_employee_form.save()
         return redirect('details-by-slug-employee', slug)
     return render(request, 'edit-employee.html', context)
+
+
+def show_upload_image(request):
+    image_form = ImageForm()
+    images = Image.objects.all()
+    if request.method == 'POST':
+        image_form = ImageForm(request.POST, request.FILES)
+        if image_form.is_valid():
+            image = image_form.save()
+            image.save()
+            # return redirect('success')
+
+    context = {
+        'image_form': image_form,
+        'images': images
+    }
+    return render(request, 'upload-image.html', context)
 
 
 def show_success(request):

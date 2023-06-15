@@ -91,3 +91,7 @@ class Username(CreateUpdateMixin, models.Model):
 
     def __str__(self):
         return f'{self.username}'
+
+
+class Image(CreateUpdateMixin, models.Model):
+    image = models.ImageField(upload_to='images')

@@ -1,6 +1,8 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from models_demo.hr.views import home, show_employees, show_departments, show_positions, delete_employee, \
-    details_employee, details_by_slug_employee, show_test_form, show_edit_employee_form, show_success
+    details_employee, details_by_slug_employee, show_test_form, show_edit_employee_form, show_success, show_upload_image
 
 urlpatterns = [
     path('', home, name='home'),
@@ -12,5 +14,9 @@ urlpatterns = [
     path('positions/', show_positions, name='show-positions'),
     path('forms/', show_test_form, name='show-forms'),
     path('edit-employee/<slug:slug>', show_edit_employee_form, name='edit-employee'),
-    path('success/', show_success, name='success')
+    path('upload-image/', show_upload_image, name='show-upload-image'),
+    path('success/', show_success, name='success'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
