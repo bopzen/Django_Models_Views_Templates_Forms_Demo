@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Validation Forms
+{% endblock %}
+
+{% block content %}
+    <h2>To Do List Form</h2>
+    <form action="{% url 'show-validation-forms' %}" method="post">
+        {% csrf_token %}
+        {{ to_do_form.as_p }}
+        <button type="submit">Submit Task</button>
+    </form>
+
+    <h2>To Do List Model Form</h2>
+    <form action="{% url 'show-validation-forms' %}" method="post">
+        {% csrf_token %}
+        {{ to_do_model_form.as_p }}
+        <button type="submit">Submit Task</button>
+    </form>
+
+
+{% endblock %}

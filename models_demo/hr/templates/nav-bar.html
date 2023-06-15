@@ -11,6 +11,8 @@
             <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Positions</a></li>
         {% url 'show-forms' as url %}
             <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Forms</a></li>
+        {% url 'show-validation-forms' as url %}
+            <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Validation Forms</a></li>
         {% url 'show-upload-image' as url %}
             <li><a href="{{ url }}" class="{% if request.path == url %}active{% endif %}">Images</a></li>
         <li><a href="http://127.0.0.1:8000/admin/" target="_blank">Admin</a></li>

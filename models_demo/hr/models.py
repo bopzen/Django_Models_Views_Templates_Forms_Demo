@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 
+from models_demo.hr.validators import validate_symbols, ValueInRangeValidator
+
 
 class CreateUpdateMixin(models.Model):
     class Meta:
@@ -95,3 +97,23 @@ class Username(CreateUpdateMixin, models.Model):
 
 class Image(CreateUpdateMixin, models.Model):
     image = models.ImageField(upload_to='images')
+
+
+class ToDoList(CreateUpdateMixin, models.Model):
+    task = models.CharField(
+        max_length=100,
+        validators=(
+            validate_symbols,
+        )
+    )
+    complete = models.BooleanField(
+        default=False,
+        blank=False,
+        null=False
+    )
+    priority = models.IntegerField(
+        validators=(
+            ValueInRangeValidator(1, 10),
+        ),
+        null=False
+    )

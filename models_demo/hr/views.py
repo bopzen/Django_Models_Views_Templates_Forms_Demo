@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from models_demo.hr.forms import TestForm, EmployeesForm, UsernameForm, ImageForm
-from models_demo.hr.models import Employee, Department, Position, Image
+from models_demo.hr.forms import TestForm, EmployeesForm, UsernameForm, ImageForm, ToDoListForm, ToDoListModelForm
+from models_demo.hr.models import Employee, Department, Position, Image, ToDoList
 
 
 def home(request):
@@ -70,6 +70,7 @@ def show_test_form(request):
         'model_form': model_form,
         'username_form': username_form
     }
+
     if test_form.is_valid():
         return redirect('success')
     if model_form.is_valid():
@@ -112,3 +113,23 @@ def show_upload_image(request):
 
 def show_success(request):
     return render(request, 'success.html')
+
+
+def show_validation_form(request):
+    to_do_form = ToDoListForm()
+    to_do_model_form = ToDoListModelForm()
+    if request.method == "POST":
+        to_do_form = ToDoListForm(request.POST)
+        to_do_model_form = ToDoListModelForm(request.POST)
+        if to_do_form.is_valid():
+            print(to_do_form.cleaned_data)
+
+        if to_do_model_form.is_valid():
+            to_do_model_form.save()
+
+
+    context = {
+        'to_do_form': to_do_form,
+        'to_do_model_form':to_do_model_form
+    }
+    return render(request, 'validation-forms.html', context)

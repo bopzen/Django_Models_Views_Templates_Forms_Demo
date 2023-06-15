@@ -1,5 +1,37 @@
 from django import forms
-from models_demo.hr.models import Employee, Username, Image
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
+from models_demo.hr.models import Employee, Username, Image, ToDoList
+from models_demo.hr.validators import validate_symbols, ValueInRangeValidator
+
+
+class ToDoListForm(forms.Form):
+    task = forms.CharField(
+        validators=(validate_symbols,),
+        max_length=100
+    )
+    complete = forms.BooleanField(required=False)
+    priority = forms.IntegerField(validators=(
+        ValueInRangeValidator(1, 10),
+    ))
+
+
+class ToDoListModelForm(forms.ModelForm):
+    class Meta:
+        model = ToDoList
+        fields = '__all__'
+        
+    def clean(self):
+        return super().clean()
+    
+    def clean_task(self):
+        return self.cleaned_data['task'].lower()
+
+    def clean_priority(self):
+        priority = self.cleaned_data['priority']
+        if priority == 5:
+            raise ValidationError(f"Priority cannot be {priority}")
+        return priority
 
 
 class TestForm(forms.Form):
